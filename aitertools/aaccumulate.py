@@ -1,6 +1,6 @@
 import operator
 
-from ..abasic import aiter, anext
+from ..abuiltin import aiter, anext
 
 
 async def aaccumulate(aiter, func=operator.add, *, initial=None):

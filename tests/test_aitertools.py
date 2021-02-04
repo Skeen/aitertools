@@ -4,7 +4,7 @@ import pytest
 from hypothesis import given
 import hypothesis.strategies as st
 
-from ..abasic import anext
+from ..abuiltin import anext
 from ..aitertools import acount
 
 
