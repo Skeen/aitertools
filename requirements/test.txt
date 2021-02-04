@@ -1,0 +1,4 @@
+-r common.txt
+pytest
+pytest-trio==0.7.0
+hypothesis
