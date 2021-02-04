@@ -1,10 +1,10 @@
 from itertools import tee
 
+import hypothesis.strategies as st
 import pytest
 from hypothesis import given
-import hypothesis.strategies as st
 
-from ...abuiltin import aiter, anext, alist
+from ...abuiltin import aiter, alist, anext
 from ..utils import apply_n_times
 
 
@@ -16,7 +16,7 @@ from ..utils import apply_n_times
         st.sets(st.integers()),
         st.text(),
         st.tuples(st.integers()),
-    )
+    ),
 )
 @pytest.mark.trio
 async def test_aiter_anext_listish(wrappings, listish):
@@ -29,7 +29,7 @@ async def test_aiter_anext_listish(wrappings, listish):
 
 @given(
     wrappings=st.integers(min_value=1, max_value=10),
-    iterable=st.iterables(st.integers())
+    iterable=st.iterables(st.integers()),
 )
 @pytest.mark.trio
 async def test_aiter_anext_iterable(wrappings, iterable):

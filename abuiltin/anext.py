@@ -1,3 +1,3 @@
 # TODO: Implemement default parameter
 async def anext(ait, default=None):
-    return (await ait.__anext__())
+    return await ait.__anext__()

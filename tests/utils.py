@@ -13,5 +13,3 @@ def apply_n_times(func, ait, times):
     for x in range(times):
         ait = func(ait)
     return ait
-
-

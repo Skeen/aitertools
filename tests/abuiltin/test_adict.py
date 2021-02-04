@@ -1,8 +1,8 @@
 from itertools import tee
 
+import hypothesis.strategies as st
 import pytest
 from hypothesis import given
-import hypothesis.strategies as st
 
 from ...abuiltin import adict, aiter
 
@@ -18,6 +18,7 @@ from ...abuiltin import adict, aiter
 async def test_all_listish(listish):
     ait = aiter(listish)
     assert await adict(ait) == dict(listish)
+
 
 @given(
     iterable=st.one_of(

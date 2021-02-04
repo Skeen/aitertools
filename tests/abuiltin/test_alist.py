@@ -1,16 +1,16 @@
 from itertools import tee
 
+import hypothesis.strategies as st
 import pytest
 from hypothesis import given
-import hypothesis.strategies as st
 
-from ...abuiltin import alist, aiter
-from ..utils import async_generator, aapply_n_times, apply_n_times
+from ...abuiltin import aiter, alist
+from ..utils import aapply_n_times, apply_n_times, async_generator
 
 
 @given(
     wrappings=st.integers(min_value=1, max_value=10),
-    length=st.integers(min_value=0, max_value=1000)
+    length=st.integers(min_value=0, max_value=1000),
 )
 @pytest.mark.trio
 async def test_alist_generator(wrappings, length):
@@ -28,7 +28,7 @@ async def test_alist_generator(wrappings, length):
         st.sets(st.integers()),
         st.text(),
         st.tuples(st.integers()),
-    )
+    ),
 )
 @pytest.mark.trio
 async def test_alist_listish(aiter_wrappings, alist_wrappings, listish):
@@ -36,10 +36,11 @@ async def test_alist_listish(aiter_wrappings, alist_wrappings, listish):
     listy = await aapply_n_times(alist, ait, alist_wrappings)
     assert listy == list(listish)
 
+
 @given(
     aiter_wrappings=st.integers(min_value=1, max_value=10),
     alist_wrappings=st.integers(min_value=1, max_value=10),
-    iterable=st.iterables(st.integers())
+    iterable=st.iterables(st.integers()),
 )
 @pytest.mark.trio
 async def test_alist_iterable(aiter_wrappings, alist_wrappings, iterable):
